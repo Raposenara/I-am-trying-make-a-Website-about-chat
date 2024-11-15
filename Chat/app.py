@@ -8,8 +8,8 @@ app = Flask(__name__)
 # Definindo uma chave secreta para sessões de cookies (necessário para manter sessões seguras no Flask)
 app.config['SECRET_KEY'] = 'minha_chave_secreta'
 
-# Criação da instância do SocketIO para lidar com conexões WebSocket
-socketio = SocketIO(app)
+# Criação da instância do SocketIO para lidar com conexões WebSocket com configurações de ping
+socketio = SocketIO(app, ping_interval=10, ping_timeout=60)
 
 # Definindo a rota principal da aplicação
 @app.route('/')
@@ -34,4 +34,3 @@ if __name__ == '__main__':
     # Executa o servidor usando socketio.run() para garantir a compatibilidade com WebSockets
     # A configuração 'host="0.0.0.0"' permite que o serviço seja acessado de qualquer endereço IP
     socketio.run(app, host='0.0.0.0', port=port, debug=True)
- 
