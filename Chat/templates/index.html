@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Online</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: black;
+        }
+        #chat-container {
+            width: 100%;
+            max-width: 500px;
+            background: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        #message-box {
+            height: 300px;
+            overflow-y: scroll;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        #user-input {
+            display: flex;
+            gap: 10px;
+        }
+        input, button {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="chat-container">
+        <div id="message-box"></div>
+        <div id="user-input">
+            <input type="text" id="message" placeholder="Digite sua mensagem...">
+            <button onclick="sendMessage()">Enviar</button>
+        </div>
+    </div>
+
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
+    <script>
+        const socket = io.connect(window.location.href);
+
+        socket.on('message', function(msg) {
+            const messageBox = document.getElementById('message-box');
+            const newMessage = document.createElement('div');
+            newMessage.textContent = msg;
+            messageBox.appendChild(newMessage);
+            messageBox.scrollTop = messageBox.scrollHeight;
+        });
+
+        function sendMessage() {
+            const messageInput = document.getElementById('message');
+            const msg = messageInput.value;
+            socket.emit('message', msg);
+            messageInput.value = '';
+        }
+    </script>
+</body>
+</html>
