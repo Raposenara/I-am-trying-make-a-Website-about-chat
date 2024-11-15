@@ -16,6 +16,6 @@ def handle_message(msg):
     send(msg, broadcast=True)
 
 if __name__ == '__main__':
-    # Pegue a porta da variável de ambiente ou use a porta 5000 como padrão
-    port = int(os.environ.get("PORT", 5000))
+    # Use apenas socketio.run() para evitar conflitos com app.run()
+    port = int(os.getenv("PORT", 5000))
     socketio.run(app, host='0.0.0.0', port=port, debug=True)
