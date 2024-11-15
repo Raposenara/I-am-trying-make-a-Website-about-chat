@@ -11,6 +11,11 @@ app.config['SECRET_KEY'] = 'minha_chave_secreta'
 # Criação da instância do SocketIO para lidar com conexões WebSocket com configurações de ping
 socketio = SocketIO(app, ping_interval=10, ping_timeout=60)
 
+@app.route("/test")
+def test():
+    return "Rota de teste funcionando"
+
+
 # Definindo a rota principal da aplicação
 @app.route('/')
 def index():
