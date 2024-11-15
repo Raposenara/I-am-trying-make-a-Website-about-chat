@@ -34,3 +34,4 @@ if __name__ == '__main__':
     # Executa o servidor usando socketio.run() para garantir a compatibilidade com WebSockets
     # A configuração 'host="0.0.0.0"' permite que o serviço seja acessado de qualquer endereço IP
     socketio.run(app, host='0.0.0.0', port=port, debug=True)
+ 
