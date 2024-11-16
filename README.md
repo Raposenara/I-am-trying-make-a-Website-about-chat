@@ -1,1 +1,0 @@
-Uma tentativa que eu vou levar a frente se preciso, talvez vire um chat aberto para todos. sem nenhuma limitação ou "regra" ( não confunda com anarquismo ) que são instituidas por normalmente algum preço ( estou falando de você whatzapp que proibe arquivo de 8mb e o discord )
